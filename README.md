@@ -135,6 +135,12 @@ Frontend runs at **http://localhost:3000**
 
 The frontend uses `http://localhost:5000/api` for local development through `client/src/api/axios.js`.
 
+For deployment, set `REACT_APP_API_URL` to the deployed backend URL plus `/api`, for example:
+
+```text
+REACT_APP_API_URL=https://doubtflow-server.onrender.com/api
+```
+
 ---
 
 ## API Reference
