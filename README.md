@@ -141,6 +141,8 @@ For deployment, set `REACT_APP_API_URL` to the deployed backend URL plus `/api`,
 REACT_APP_API_URL=https://doubtflow-server.onrender.com/api
 ```
 
+On the backend Render service, optionally set `CLIENT_URL=https://doubtflow.onrender.com` to restrict API access to the deployed frontend. For the screenshot URL shown, this value may also be set to `https://doubtflow.onrender.com`.
+
 ---
 
 ## API Reference

@@ -6,9 +6,30 @@ const path = require("path");
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [
+    "http://localhost:3000",
+    "https://doubtflow.onrender.com",
+    process.env.CLIENT_URL,
+].filter(Boolean);
+
+const corsOptions = {
+    origin(origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+        return callback(new Error("Origin not allowed by CORS"));
+    },
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "x-user-id"],
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+app.get("/api/health", (req, res) => {
+    res.json({ status: "ok" });
+});
 
 // Routes
 app.use("/api/auth", require("./routes/auth"));
